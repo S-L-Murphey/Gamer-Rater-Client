@@ -5,6 +5,8 @@ import { GameProvider } from "./game/GameProvider.js"
 import { GameDetail } from "./game/GameDetails"
 import { GameForm } from "./game/GameForm.js"
 import { CategoryProvider } from "./game/CategoryProvider.js"
+import { ReviewProvider } from "./game/ReviewProvider.js"
+import { ReviewForm } from "./game/ReviewForm.js"
 
 
 export const ApplicationViews = () => {
@@ -18,12 +20,20 @@ export const ApplicationViews = () => {
                     <Route exact path="/games">
                         <GameList />
                     </Route>
-                    <Route exact path="/games/detail/:gameId(\d+)">
-                        <GameDetail />
-                    </Route>
+                    <ReviewProvider>
+                        <Route exact path="/games/detail/:gameId(\d+)">
+                            <GameDetail />
+                        </Route>
+                    </ReviewProvider>
                     <Route exact path="/games/new">
                         <GameForm />
                     </Route>
+
+                    <ReviewProvider>
+                        <Route exact path="/games/:gameId(\d+)/review">
+                            <ReviewForm />
+                        </Route>
+                    </ReviewProvider>
                 </CategoryProvider>
             </GameProvider>
 
